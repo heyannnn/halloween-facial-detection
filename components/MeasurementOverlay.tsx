@@ -119,8 +119,17 @@ export default function MeasurementOverlay({
         const rectWidth = maskWidth;
         const rectHeight = maskHeight;
 
-        const boxWidth = Math.max(500, box.sentence.length * 22);
+        // Detect if sentence contains Japanese characters
+        const hasJapanese = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(box.sentence);
+
+        // Better width calculation accounting for Japanese characters
+        // Japanese chars are wider, need ~30px each, English needs ~20px
+        const avgCharWidth = hasJapanese ? 32 : 20;
+        const boxWidth = Math.max(500, box.sentence.length * avgCharWidth + 40);
+
+        // Fixed height since we're not wrapping
         const boxHeight = 110;
+
         let startX = rectX + rectWidth + 15;
         let startY = rectY;
 
@@ -189,18 +198,32 @@ export default function MeasurementOverlay({
               stroke="#808080"
               strokeWidth="6"
             />
-            {/* Text - simple black on gray */}
-            <text
-              x={startX + boxWidth / 2}
-              y={startY + boxHeight / 2 + 12}
-              textAnchor="middle"
-              fill="#000000"
-              fontSize="32"
-              fontWeight="bold"
-              fontFamily="MS Gothic, Courier New, monospace"
+            {/* Text - single line, no wrapping */}
+            <foreignObject
+              x={startX + 12}
+              y={startY + 12}
+              width={boxWidth - 24}
+              height={boxHeight - 24}
             >
-              {box.sentence}
-            </text>
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: 'MS Gothic, Courier New, monospace',
+                  fontSize: '32px',
+                  fontWeight: 'bold',
+                  color: '#000000',
+                  textAlign: 'center',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                }}
+              >
+                {box.sentence}
+              </div>
+            </foreignObject>
           </g>
         );
       })}

@@ -2,7 +2,19 @@
   "permissions": {
     "allow": [
       "Bash(curl -L -o \"public/models/tiny_face_detector_model-weights_manifest.json\" \"https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights/tiny_face_detector_model-weights_manifest.json\")",
-      "Bash(curl -L -o \"public/models/tiny_face_detector_model-shard1\" \"https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights/tiny_face_detector_model-shard1\")"
+      "Bash(curl -L -o \"public/models/tiny_face_detector_model-shard1\" \"https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights/tiny_face_detector_model-shard1\")",
+      "Bash(gh repo create halloween-facial-detection --public --source=. --remote=origin --push --description=\"Real-time facial expression detector with smile challenge. Built with Next.js, TypeScript, and face-api.js\")",
+      "Bash(git add TEXT_CUSTOMIZATION.md)",
+      "Bash(git commit -m \"Add text customization guide\")",
+      "Bash(git push)",
+      "Bash(git add public/masks/mask1.png)",
+      "Bash(git commit -m \"Update face mask image\")",
+      "Bash(git add:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nRedesign: Retro Windows 95/98 UI with multi-face detection\n\nMajor changes:\n- Replace smile detection with sentence-based face overlays\n- Support multiple face detection simultaneously (changed from detectSingleFace to detectAllFaces)\n- Add three mask types (marc, tomo, heng) with corresponding sentence pools\n- Implement 5-second swap interval for masks and sentences\n- Complete UI redesign to Windows 95/98 aesthetic:\n  - Gray window frames with 3D borders\n  - Blue title bar with window controls\n  - Cyan/magenta color scheme for face markers\n  - Retro button styling with inset/outset borders\n- Replace individual face tracking with index-based stable IDs\n- Synchronize mask images with sentence types\n- Remove ExpressionAnalyzer dependency\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nImprove multi-face detection and camera view fill\n\nMajor improvements:\n- Implement per-face independent swap timers to prevent simultaneous changes\n- Add staggered swap intervals (7-10.5 seconds) based on face index\n- Each face now swaps independently, making it easier to read with multiple people\n- Change camera view from object-contain to object-cover for better vertical fill\n- Camera now fills available height while maintaining correct aspect ratio\n- Add cleanup logic to remove timer entries for faces that leave\n- Improve overall multi-person experience with less visual chaos\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nScale up UI elements and fix mask display\n\nMajor improvements:\n- Double all text sizes throughout the application (2x larger)\n- Increase window width from max-w-7xl to 95% of screen\n- Double button sizes (24px → 48px)\n- Scale sentence overlay text from 16px → 32px\n- Increase box dimensions and stroke widths (2x)\n- Fix mask cropping by changing object-cover to object-contain\n- Enlarge masks from 1.5x to 2x face size for full visibility\n- Adjust measurement overlay to match mask size and positioning\n- Use landmark-based positioning for both masks and measurements\n- Allow masks to extend slightly beyond screen edges for natural fit\n- Add more sentence variations for all three mask types\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
